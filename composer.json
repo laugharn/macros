@@ -1,0 +1,20 @@
+{
+    "name": "laugharn/macros",
+    "description": "Collection macros for Laravel",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0",
+        "illuminate/support": ">=5.2"
+    },
+    "authors": [
+        {
+            "name": "Dan Laugharn",
+            "email": "laugharn@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Laugharn\\Macros\\": "src/"
+        }
+    }
+}
