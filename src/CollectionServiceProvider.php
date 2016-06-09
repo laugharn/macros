@@ -9,9 +9,10 @@ class CollectionServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Collection::macro('associate', function () {
-            return $this->reduce(function ($items, $pair) {
-                list($key, $value) = $pair;
+        Collection::macro('associate', function ($key = null, $value = null) {
+            return $this->reduce(function ($items, $values) use($key, $value) {
+                $values = collect($values);
+                list($key, $value) = (is_null($key) ? $values->take(2)->values()->toArray() : [$values->get($key), $values->get($value)]);
                 return $items->put($key, $value);
             }, new static);
         });
