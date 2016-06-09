@@ -1,6 +1,6 @@
 ## Macros
 
-Extends Illuminate\Support\Collection with some helpful macros.
+Extends Laravel with some helpful macros.
 
 ### Installation
 
@@ -10,7 +10,15 @@ Require it with Composer:
     composer require laugharn/macros
 ```
 
-Add the Service Provider to the `config/app.php` providers array:
+Macros comes with a handful of service providers you can add to the `config/app.php` providers array:
+
+For Builder macros:
+
+```php
+    Laugharn\Macros\BuilderServiceProvider::class
+```
+
+For Collection macros:
 
 ```php
     Laugharn\Macros\CollectionServiceProvider::class
