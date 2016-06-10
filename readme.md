@@ -24,4 +24,10 @@ For Collection macros:
     Laugharn\Macros\CollectionServiceProvider::class
 ```
 
+For Request macros:
+
+```php
+    Laugharn\Macros\RequestServiceProvider::class
+```
+
 No need for additional configuration, you're good to go.
