@@ -17,7 +17,7 @@ class CollectionServiceProvider extends ServiceProvider
             }, new static);
         });
 
-        Collection::macro('pipe', function ($callback) {
+        Collection::macro('then', function ($callback) {
             return $callback($this);
         });
 
