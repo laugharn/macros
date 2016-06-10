@@ -18,14 +18,8 @@ class CollectionServiceProvider extends ServiceProvider
         });
 
         Collection::macro('fails', function ($rules) {
-            return $this->map(function ($item) use($rules) {
-                if(validator()->make($item, $rules)->fails()) {
-                    return $item;
-                };
-
-                return null;
-            })->reject(function($item) {
-                return empty($item);
+            return $this->filter(function ($item) use($rules) {
+                return validator()->make($item, $rules)->fails();
             });
         });
 
@@ -46,14 +40,8 @@ class CollectionServiceProvider extends ServiceProvider
         });
 
         Collection::macro('passes', function ($rules) {
-            return $this->map(function ($item) use($rules) {
-                if(validator()->make($item, $rules)->passes()) {
-                    return $item;
-                };
-
-                return null;
-            })->reject(function($item) {
-                return empty($item);
+            return $this->filter(function ($item) use($rules) {
+                return validator()->make($item, $rules)->passes();
             });
         });
 
