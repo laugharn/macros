@@ -17,7 +17,7 @@ class CollectionServiceProvider extends ServiceProvider
             }, new static);
         });
 
-        Collection::macro('fails', function ($rules) {
+        Collection::macro('fail', function ($rules) {
             return $this->filter(function ($item) use($rules) {
                 return validator()->make($item, $rules)->fails();
             });
@@ -39,7 +39,7 @@ class CollectionServiceProvider extends ServiceProvider
             return $this;
         });
 
-        Collection::macro('passes', function ($rules) {
+        Collection::macro('pass', function ($rules) {
             return $this->filter(function ($item) use($rules) {
                 return validator()->make($item, $rules)->passes();
             });
