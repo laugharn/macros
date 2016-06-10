@@ -17,6 +17,22 @@ class CollectionServiceProvider extends ServiceProvider
             }, new static);
         });
 
+        Collection::macro('ifAny', function ($callback) {
+            if(!$this->isEmpty()) {
+                return $callback($this);
+            }
+
+            return $this;
+        });
+
+        Collection::macro('ifEmpty', function ($callback) {
+            if($this->isEmpty()) {
+                return $callback($this);
+            }
+
+            return $this;
+        });
+
         Collection::macro('then', function ($callback) {
             return $callback($this);
         });
