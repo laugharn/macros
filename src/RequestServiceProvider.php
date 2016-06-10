@@ -2,7 +2,6 @@
 
 namespace Laugharn\Macros;
 
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 
