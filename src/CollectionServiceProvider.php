@@ -4,6 +4,7 @@ namespace Laugharn\Macros;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\ValidationException;
 
 class CollectionServiceProvider extends ServiceProvider
 {
@@ -17,7 +18,7 @@ class CollectionServiceProvider extends ServiceProvider
             }, new static);
         });
 
-        Collection::macro('fail', function ($rules) {
+        Collection::macro('fail', function ($rules = []) {
             return $this->filter(function ($item) use($rules) {
                 return validator()->make($item, $rules)->fails();
             });
@@ -39,7 +40,7 @@ class CollectionServiceProvider extends ServiceProvider
             return $this;
         });
 
-        Collection::macro('pass', function ($rules) {
+        Collection::macro('pass', function ($rules = []) {
             return $this->filter(function ($item) use($rules) {
                 return validator()->make($item, $rules)->passes();
             });
@@ -55,6 +56,14 @@ class CollectionServiceProvider extends ServiceProvider
             }, ...$this->values());
 
             return new static($items);
+        });
+
+        Collection::macro('validate', function ($rules = []) {
+            return $this->each(function ($item) use ($rules) {
+                if (validator()->make($item, $rules)->fails()) {
+                    throw new ValidationException($this);
+                }
+            });
         });
     }
 
